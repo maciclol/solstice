@@ -1,0 +1,83 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="p-3 position-relative" id="main" style="height: calc(100vh - 49px); overflow-y: scroll">
+  <img src="{{ url_for('static', filename='/img/Solstice.png') }}" height=65 class="mb-4">
+  <div class="float-right mt-3 pe-3 rounded-pill custom-border" id="account-switcher" style="height: 32px;"><a href="me" class="link-inherit">
+    <img src="{{ url_for('static', filename='img/pfp/' + current_user.pfp) }}" height="30px" class="rounded-circle">
+    <p class="d-inline-block mt-1 ms-1" style="vertical-align: top">{% if current_user.name %}{{ current_user.name }}{% else %}@{{ current_user.username }}{% endif %}</p></a>
+  </div>
+  <!-- Charities -->
+  <div class="options pb-4 pt-3 w-100" style="height: calc(100vh - 220px)">
+  <h1 class="pb-3">{{ title }}</h1>
+  {% if title != "Edit Post" %}
+  <div class="row">
+    <div class="col-6">
+      <a href="/upload" class="link-inherit">
+        <h6 class="fw-normal text-center my-2">PROJECT</h6>
+      </a>
+    </div>
+    <div class="col-6">
+      <h6 class="fw-normal text-center my-2">FORUM</h6>
+      <div class="custom-progress-bar" style="animation: none"></div>
+    </div>
+  </div>
+  {% endif %}
+
+  <form method="POST" autocomplete="off" action="">
+
+    {{ project.hidden_tag() }}
+
+    <h6 class="fw-normal mt-4">Post Content</h6>
+    {% if project.content.errors %}
+      {{ project.content(class="form-control form-control-custom is-invalid", placeholder="Include up to 600 characters in your post!", style="height: 160px; resize: none") }}
+    {% else %}
+      {{ project.content(class="form-control form-control-custom", placeholder="Include up to 600 characters in your post!", style="height: 160px; resize: none") }}
+    {% endif %}
+
+    {% if project.content.errors %}
+      {% for error in project.content.errors %}
+      <p class="my-3 text-danger">{{ error }}</p>
+      {% endfor %}
+    {% endif %}
+
+    <h6 class="fw-normal mt-5">Category</h6>
+    {% if project.survey.errors %}
+      {{ project.survey(class="form-control form-control-custom is-invalid", placeholder="Provide a link to your survey") }}
+    {% else %}
+      {{ project.survey(class="form-control form-control-custom", placeholder="Provide a link to your survey") }}
+    {% endif %}
+
+
+    {% if project.survey.errors %}
+      {% for error in project.survey.errors %}
+        <p class="my-3 text-danger">{{ error }}</p>
+      {% endfor %}
+    {% endif %}
+
+    </div>
+
+    <div class="save-btns position-absolute px-3 pt-3 pb-2">
+      {{ project.submit(class="d-block w-100 py-1 mb-2 rounded btn btn-custom", placeholder="Provide a link to your survey") }}
+    </form></div>
+</div>
+{% endblock content %}
+
+
+
+{% block footer %}
+<div class="col">
+  <a href="/"><img src="/static/img/svg/house-door.svg" class="mx-auto d-block" height="24"></a>
+</div>
+<div class="col">
+  <a href="/search"><img src="/static/img/svg/search.svg" class="mx-auto d-block" height="22"></a>
+</div>
+<div class="col">
+  <img src="/static/img/svg/plus-circle-fill.svg" class="mx-auto d-block" height="24">
+</div>
+<div class="col">
+  <img src="/static/img/svg/lightning.svg" class="mx-auto d-block" height="24">
+</div>
+<div class="col">
+  <img src="/static/img/svg/envelope.svg" class="mx-auto d-block" height="24">
+</div>
+{% endblock footer %}

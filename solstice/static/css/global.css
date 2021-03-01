@@ -1,0 +1,167 @@
+/* Font imports */
+
+@font-face {
+	font-family: 'Poppins';
+ 	src: url('../fonts/Poppins-Regular.ttf') format('truetype');
+ 	font-weight: 400;
+ 	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Poppins';
+ 	src: url('../fonts/Poppins-Bold.ttf') format('truetype');
+ 	font-weight: 500;
+ 	font-style: bold;
+}
+
+@font-face {
+	font-family: 'Poppins';
+ 	src: url('../fonts/Poppins-Light.ttf') format('truetype');
+ 	font-weight: 300;
+ 	font-style: normal;
+}
+
+/* Basics */
+
+html {
+	scroll-behavior: smooth;
+}
+
+body {
+	color: black;
+	font-family: 'Poppins';
+	margin: 0px;
+	overflow-y: hidden;
+}
+
+ul {
+	list-style-type: none;
+}
+
+.float-right {
+	float: right;
+}
+
+.btn-custom {
+	background-color: none;
+	border: solid 1px #2924dd;
+	color: #2924dd !important;
+}
+
+/* Styles */
+
+.custom-border {
+	border: dashed 1px #aaa;
+}
+
+.link-custom {
+	color: #2924dd !important;
+}
+
+.link-inherit {
+	color: inherit !important;
+	text-decoration: inherit;
+}
+
+#account-switcher {
+	background: #fff;
+}
+
+#account-switcher:active {
+	background: #eee;
+	transition: all 0.3s ease;
+}
+
+#navbar {
+	background: #fcfcfc;
+	border-top: solid 1px #eee;
+	padding-top: 12px;
+	padding-bottom: 12px;
+}
+
+#topics {
+	margin-left: -16px;
+	margin-right: -16px;
+	overflow-x: scroll;
+	white-space: nowrap;
+}
+
+#comment {
+	height: 28px;
+	font-size: 12px;
+	width: calc(100% - 37px)
+}
+
+#comment-input {
+	position: fixed;
+	bottom: 49px;
+	border-top: solid 1px #eee;
+}
+
+.vam {
+	vertical-align: middle;
+}
+
+.img-invert {
+	filter: invert(100%);
+	-webkit-filter: invert(100%);
+}
+
+.open-survey {
+	border-top: solid 1px #eee;
+	border-bottom: solid 1px #eee;
+}
+
+.text-muted {
+	color: #DDD !important;
+}
+
+.flash {
+	position: absolute;
+	animation: flash_show 5s both;
+	background-color: #eee;
+	border: solid 1px #444;
+	width: calc(100vw - 32px);
+}
+
+.custom-progress-bar {
+	height: 2px;
+	animation: flash_bar 4.4s linear;
+	background: #2924dd;
+}
+
+.save-btns {
+	width: 100vw;
+	bottom: 0px;
+	left: 0px;
+	border-top: solid 1px #eee;
+}
+
+.options {
+	height: calc(100vh - 256px);
+	overflow-y: scroll;
+	overflow-x: hidden;
+}
+
+.form-control-custom {
+	border-width: 0px 0px 1px 0px;
+	border-radius: 0px;
+	padding-left: 0px;
+}
+
+.verified {
+	vertical-align: sub;
+}
+
+/* Animations */
+@keyframes flash_show {
+  from {bottom: -100px; opacity: 20%}
+	15% {bottom: 60px; opacity: 100%}
+	85% {bottom: 60px; opacity: 100%}
+  to {bottom: -100px; opacity: 10%}
+}
+
+@keyframes flash_bar {
+	from {width: 0%}
+	to {width: 100%}
+}

@@ -1,0 +1,77 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="p-3 position-relative" id="main" style="height: calc(100vh - 49px); overflow-y: scroll">
+
+  <h1 class="mt-2 mb-4">My Account</h1>
+
+  <div class="options pb-4">
+    <form method="POST" autocomplete="off" action="" enctype="multipart/form-data">
+    <div class="row">
+      <div class="col-auto">
+        <label for="image-uploader">
+          {{ form.picture(id="image-uploader", class="d-none") }}
+          <img src="{{ img_file }}" height="53px" class="rounded-circle">
+        </label>
+      </div>
+      <div class="col-auto ps-0">
+        {% if current_user.name %}
+        <h4 class="mb-1">{{ current_user.name }}</h4>
+        <p class="fw-normal">@{{ current_user.username }}</p>
+        {% else %}
+        <h4 style="margin-top: 10px">@{{ current_user.username }}</h4>
+        {% endif %}
+      </div>
+    </div>
+
+    {{ form.hidden_tag() }}
+
+    <h6 class="fw-normal mt-4">Display Name</h6>
+    {% if form.name.errors %}
+      {{ form.name(class="form-control form-control-custom is-invalid", placeholder="Your Name") }}
+    {% else %}
+      {{ form.name(class="form-control form-control-custom", placeholder="Your Name") }}
+    {% endif %}
+
+    <h6 class="fw-normal mt-4">Username</h6>
+    {% if form.username.errors %}
+      {{ form.username(class="form-control form-control-custom is-invalid") }}
+    {% else %}
+      {{ form.username(class="form-control form-control-custom") }}
+    {% endif %}
+
+    <h6 class="fw-normal mt-4">Email</h6>
+    {% if form.email.errors %}
+      {{ form.email(class="form-control form-control-custom my-2 is-invalid") }}
+    {% else %}
+      {{ form.email(class="form-control form-control-custom my-2") }}
+    {% endif %}
+  </div>
+
+  <div class="save-btns position-absolute px-3 pt-3 pb-2">
+    {{ form.submit(class="d-block w-100 py-1 rounded btn btn-custom") }}
+    </form>
+    <a href="logout" class="link-inherit"><button type="button" class="d-block w-100 py-1 mt-2 rounded btn btn-custom">LOG OUT</button></a>
+    <font size=2 class="mt-2 text-center d-block">Looking to <a href="#" class="link-custom">delete</a> your account?</font>
+  </div>
+</div>
+{% endblock content %}
+
+
+
+{% block footer %}
+<div class="col">
+  <a href="/" ontouchstart="click()"><img src="/static/img/svg/house-door.svg" class="mx-auto d-block" height="24"></a>
+</div>
+<div class="col">
+  <a href="/search" ontouchstart="click()"><img src="/static/img/svg/search.svg" class="mx-auto d-block" height="22"></a>
+</div>
+<div class="col">
+  <img src="/static/img/svg/plus-circle-dotted.svg" class="mx-auto d-block" height="24">
+</div>
+<div class="col">
+  <img src="/static/img/svg/lightning.svg" class="mx-auto d-block" height="24">
+</div>
+<div class="col">
+  <img src="/static/img/svg/envelope.svg" class="mx-auto d-block" height="24">
+</div>
+{% endblock footer %}

@@ -1,0 +1,31 @@
+{% extends "account-evaluation.html" %}
+{% block content %}
+
+<h1 class="mt-5 mb-4">Register</h1>
+<form method="POST" action="">
+  {{ form.hidden_tag() }}
+
+  {% if form.username.errors %}
+    {{ form.username(class="form-control is-invalid", placeholder="Username") }}
+  {% else %}
+    {{ form.username(class="form-control", placeholder="Username") }}
+  {% endif %}
+
+  {% if form.email.errors %}
+    {{ form.email(class="form-control my-2 is-invalid", placeholder="Email") }}
+  {% else %}
+    {{ form.email(class="form-control my-2", placeholder="Email") }}
+  {% endif %}
+
+  {% if form.password.errors %}
+    {{ form.password(class="form-control is-invalid", placeholder="Password") }}
+  {% else %}
+    {{ form.password(class="form-control", placeholder="Password") }}
+  {% endif %}
+
+  {{ form.submit(class="d-block w-100 py-1 mt-2 rounded btn btn-custom") }}
+
+  <a href="login" class="link-custom"><small class="mt-4 d-block">Sign in</small></a>
+</form>
+
+{% endblock content %}

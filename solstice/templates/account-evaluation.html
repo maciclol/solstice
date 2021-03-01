@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/css/bootstrap.min.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/css/global.css') }}">
+	<link rel="icon" type="image/png" href="{{ url_for('static', filename='/img/favicon.png' ) }}">
+
+	{% if title %}
+	<title>{{ title }} - Solstice</title>
+	{% else %}
+	<title>Solstice</title>
+	{% endif %}
+</head>
+<body>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-2"></div>
+			<div class="col-8 position-relative py-5 text-center" style="height: 100vh">
+				<img src="/static/img/solstice.png" width="150px" class="text-center">
+				{% block content %}{% endblock %}
+				<font size=2 class="position-absolute" style="bottom: 10px; left: calc(50% - 41px)">
+					<a href="#" class="link-custom text-decoration-underline">ToS</a> • <a href="#" class="link-custom text-decoration-underline">Privacy</a>
+				</font>
+			</div>
+		</div>
+	</div>
+
+	{% with messages = get_flashed_messages() %}
+		{% if messages %}
+			{% for message in messages %}
+				<div class="flash shadow-sm rounded mx-3">
+					<div class="custom-progress-bar"></div>
+						<p class="px-2 my-2">{{ message }}</p>
+				</div>
+			{% endfor %}
+		{% endif %}
+	{% endwith%}
+
+	<script src="{{ url_for('static', filename='/js/score.js') }}"></script>
+</body>
+</html>
